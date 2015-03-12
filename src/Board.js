@@ -139,11 +139,32 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
 
-      return false; // fixme
+    	var size = this.get('n');
+
+    	var startRow = 0;
+    	var startCol = majorDiagonalColumnIndexAtFirstRow;
+    	var counter = 0;
+
+    	for (; startRow < size && startCol < size; startRow++ && startCol++){
+    		if (startCol >= 0){
+    			var row = this.get(startRow);
+    			counter += row[startCol];
+    		}
+    	}
+
+      return (counter>1) // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+    	var size = this.get('n');
+    	
+
+    	for (var i=; i<size; i++){
+    		if (this.hasRowConflictAt(i)){
+    			return true;
+    		}
+    	}
 
       return false; // fixme
     },
